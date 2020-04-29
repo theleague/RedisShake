@@ -1,3 +1,27 @@
+# League Customizations
+
+While this project performs its stated goal, it is best if it is run in an environment that limits potential security risks. Rather than install this locally on one's machine, we Dockerize the application so it runs in isolation. This also helps make running this application super simple to use as there is nothing to install other than docker.
+
+```sh
+# Reset to beginning state:
+docker stop $(docker ps -a -q)
+docker system prune -a
+
+# Configure the `./conf/redis-shake.conf` file with the appropriate redis instance
+
+# Build and run the docker container:
+docker build --rm -t redis-shake .
+docker run -it --entrypoint /bin/bash redis-shake
+
+# Copy the keys
+./redis-shake.linux -type=rump -conf=../conf/redis-shake.conf
+
+```
+
+
+
+# *** BELOW ARE THE ORIGINAL NOTES ***
+
 RedisShake is mainly used to synchronize data from one redis to another.<br>
 Thanks to the Douyu's WSD team for the support. <br>
 
